@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head> 
+<head>  
         <meta charset="utf-8" />
         <title>QCC | Quality Commercial Cleaning</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
