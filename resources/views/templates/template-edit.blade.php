@@ -65,7 +65,7 @@
    <div class="createtemp_formarea">
       <div class="container">
          <div class="formedit_createarea">
-            <form action="{{route('template.store')}}" method="post">@csrf
+            <form action="{{route('template.update', $template->id)}}" method="post">@csrf
                <div class="templatetitle_imgdetails">
                   <div class="row">
                      <div class="col-lg-12">
@@ -103,7 +103,7 @@
                                  <div class="template_title_edgt">
                                     <div class="editable-title">
                                     <div class="templateinput_title_description">
-                                       <input type="text" id="page_title" class="title edit-icon" name="page_title" value="Your Title" disabled>
+                                       <input type="text" id="page_title" class="title edit-icon" name="page_title" value="Your Title">
                                        </div>
                                        <span class="edit-icon">&#9998;</span>
                                     </div>
@@ -143,7 +143,7 @@
                                                             <div class="iconaccordian_fields purpleiush_bg">T</div> Text
                                                             Answer
                                                          </div>
-                                                      <input type="hidden" name="question[0][question_type]" value="text_answer">
+                                                      <input type="hidden" name="question[0][question_type]" value="">
 
                                                       </div>
                                                    </div>
@@ -221,7 +221,7 @@
                                           </div>
                                           <div class="addnew_page_button">
                                              <button type="submit">
-                                                <iconify-icon icon="iconoir:page-flip"></iconify-icon> submit
+                                                <iconify-icon icon="iconoir:page-flip"></iconify-icon> Save
                                              </button>
                                           </div>
                                        </div>
@@ -687,8 +687,8 @@
    }
 
    var i = 0;
-   var j = 1; 
-
+   var j = 0;
+   var page_title;
    $(document).ready(function(){
       $.ajax({
           type: "get",
@@ -700,16 +700,22 @@
               {
                $(".sortable-list").empty();
                response.data.forEach(function(item, index) {
+                  page_title = item.t_page_name;
                   var newQuestion = $(`
                      <li class='sortable-item'>
                            <div class='sortebla_item_edit'>
                               <span class='handle-dots ui-sortable-handle'>
                                  <iconify-icon icon='ph:dots-six-vertical-bold'></iconify-icon>
                               </span>
+                              ${
+                              item.is_required === '1' ?
+                                 '<span class="mt-2">*</span>' : ''
+                              }
                               <input type='text' class='question-input' name='question[${index}][value]' value="${item.filed_name}" placeholder='Type question'>
+                              <input type='hidden' class='question-input' name='question[${index}][fielld_id]' value="${item.id}" placeholder='Type question'>
                               <div class='col-lg-4'>
                                  <div class='answerboxwth_dropdown'>
-                                       <div type='button' id='text_${index}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'>
+                                       <div type='button' id='text_${++j}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'>
                                           <div class='responses-menu-item-styled'>
                                              ${
                                                    item.field_type === 'text_answer' ?
@@ -859,7 +865,7 @@
                                              }
                                           </div>
                                        </div>
-                                       <input type='hidden' name='question[${index}][question_type]' value="">
+                                       <input type='hidden' name='question[${index}][question_type]' value="${item.field_type}">
                                  </div>
                               </div>
                            </div>
@@ -903,7 +909,10 @@
                      </li>
                   `);
                   $(".sortable-list").append(newQuestion);
+                  i = index;
+                  j = j;
                });
+               $('#page_title').val(page_title);
               }else{
                   alert("Error");
               }
@@ -919,9 +928,9 @@
    function addQuestion() {
       var newQuestion = $(`<li class='sortable-item'>
          <div class='sortebla_item_edit'><span class='handle-dots ui-sortable-handle'><iconify-icon icon='ph:dots-six-vertical-bold'></iconify-icon></span>
-         <input type='text' class='question-input' name='question[${i}][value]' placeholder='Type question'>
+         <input type='text' class='question-input' name='question[${++i}][value]' placeholder='Type question'>
           <div class='col-lg-4'> <div class='answerboxwth_dropdown'> 
-          <div type='button' id='text_${j}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'><div class='responses-menu-item-styled'> <div color='#13855f' mode='light' class='response_chip_menu yesoption_menu'>Yes</div> <div color='#c60022' mode='light' class='response_chip_menu no_optionmenu'>No</div> <div color='#707070' mode='light' class='response_chip_menu na_responsice_menu'>N/A</div> </div></div>          <input type='hidden' name='question[${i}][question_type]' value=""></div> </div>
+          <div type='button' id='text_${++j}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'><div class='responses-menu-item-styled'> <div color='#13855f' mode='light' class='response_chip_menu yesoption_menu'>Yes</div> <div color='#c60022' mode='light' class='response_chip_menu no_optionmenu'>No</div> <div color='#707070' mode='light' class='response_chip_menu na_responsice_menu'>N/A</div> </div></div>          <input type='hidden' name='question[${i}][question_type]' value=""></div> </div>
          </div>
          <div class='accordion-content'> <div class='item-settings__Container'> <div class='leftfield_setting_container'> <div class='link__Link_logic'> <span ><iconify-icon icon='simple-line-icons:graph'></iconify-icon> Add logic</span> </div> <div class='required_firlscheck'> <div class='form-check'> <input class='form-check-input' type='checkbox' name='question[${i}][is_required]' id='flexCheckDefault' value="1"> <label class='form-check-label' for='flexCheckDefault'> Required </label> </div> </div> <div> <div class='field_format'>Format: <span role='button' class=''>Short answer</span></div> </div> </div> <div> <div class='dropdown answeraction_dropdown'> <a class='dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'> <iconify-icon icon='entypo:dots-three-vertical'></iconify-icon> </a> <ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'> <li><a class='dropdown-item' href='#'><iconify-icon icon='lets-icons:notebook-fill'></iconify-icon> Paste Questions</a></li> </ul> </div> </div> </div> <button class='delete-button' onclick='deleteItem(this)'><iconify-icon icon='fluent:delete-28-regular'></iconify-icon></button> </div>
          </li>`);

@@ -242,7 +242,9 @@ Route::group(['prefix'=>'templates','as'=>'template.','middleware'=>'auth'], fun
     Route::get('/add', [TemplatesController::class,'create'])->name('create');
     Route::post('/store', [TemplatesController::class,'store'])->name('store');
     Route::get('/edit/{id}', [TemplatesController::class,'edit'])->name('edit');
+    Route::post('/update/{id}', [TemplatesController::class,'update'])->name('update');
     Route::get('/get-fields', [TemplatesController::class,'getFields'])->name('getFields');
+    Route::get('/add-page', [TemplatesController::class,'addPage'])->name('addPage');
 
     // Route::post('/update/{id}', [TemplatesController::class,'update'])->name('update');
     // Route::post('/shift-question-unique-check', [TemplatesController::class,'unique_check'])->name('unique-check');

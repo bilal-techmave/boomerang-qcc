@@ -42,7 +42,15 @@ class TemplatesController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        // $count = 0;
+        // foreach ($request->all() as $key => $value) {
+        //     if (strpos($key, 'question_') === 0) {
+        //         $count++;
+        //     }
+        // }
+        // dd($count);
+
+        dd($request->all());
         try {
             $i = 0;
             $recordsToInsert = [];
@@ -54,7 +62,7 @@ class TemplatesController extends Controller
                     't_section_name'     => $request->section_name ?? null,
                     'filed_name'         => $data['value'],
                     'field_type'         => $data['question_type'] ?? '',
-                    'is_required'        => $data['is_required'] ?? '',
+                    'is_required'        => isset($data['is_required']) ? $data['is_required'] : '0',
                     'sort_no'            => ++$i,
                 ];
 
@@ -62,7 +70,9 @@ class TemplatesController extends Controller
             }
             $template_field = TemplateField::insert($recordsToInsert);
             if($template_field && $template){
-                return redirect()->back()->with('success', 'template created successfully.');
+                return redirect()->route('template.index')->with('success', 'template created successfully.');
+            }else{
+                return redirect()->back()->with('success', 'Something went wrong.');
             }
         }catch(\Exception $e){
             return redirect()->back()->with('success', $e->getMessage());
@@ -77,7 +87,46 @@ class TemplatesController extends Controller
 
         return view('templates.template-edit', compact('template'));
     }
+    public function update(Request $request)
+    {
+        try{
+            // dd($request->all());
+            $i = 0;
+            $template = Template::findOrFail($request->id);
+            $template->update($request->except(['_token', 'question']));      
+            foreach($request->question as $data){
+                $record = [
+                    'template_id'    => $template->id,
+                    't_page_name'    => $request->page_title,
+                    't_section_name' => $request->section_name ?? null,
+                    'filed_name'     => $data['value'],
+                    'field_type'     => $data['question_type'] ?? '',
+                    'is_required'    => isset($data['is_required']) ? $data['is_required'] : '0',
+                    'sort_no'        => ++$i,
+                ];
 
+                if(isset($data['fielld_id'])) 
+                {
+                    $existingRecord = TemplateField::find($data['fielld_id']);
+                    if($existingRecord) {
+                        $existingRecord->update($record);
+                    }
+                }else{
+                    $newRecord = TemplateField::insert($record);
+                }
+            }
+        
+            return redirect()->route('template.index')->with('success', 'Template updated successfully.');
+        }catch(\Exception $e){
+            return $data = [
+                $e->getMessage(),
+                $e->getLine(),
+                $e->getFile()
+            ];
+            return redirect()->back()->with('success', $e->getMessage());
+        }
+        
+    }
     public function getFields(Request $request)
     {
         $data = TemplateField::where('template_id', $request->id)->orderBy('sort_no', 'ASC')->get();
@@ -93,6 +142,29 @@ class TemplatesController extends Controller
                 'success'=> false,
                 'data'=> '',
                 ]);
+        }
+    }
+    
+    public function addPage(Request $request)
+    {
+        $id_no = $request->no;
+        $class_no = ++$id_no;
+        $data_html = view('templates.add-page', compact('class_no'))->render();
+
+        if($data_html)
+        {
+            return response()->json([
+                'success' => true,
+                'status' => 200,  
+                'data'  => $data_html,
+                'class_no' => $class_no      
+            ]);
+        }else{
+            return response()->json([
+                'success' => false,
+                'status' => 404,
+                'data'  => ''
+            ]);
         }
     }
 }
