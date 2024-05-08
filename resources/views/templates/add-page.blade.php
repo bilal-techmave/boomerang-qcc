@@ -1,5 +1,4 @@
 <div class="templateformbox">
-<input type="hidden" name="page_no[]" value="{{$class_no}}">
     <div class="template_title_edgt">
     <div class="editable-title">
     <div class="templateinput_title_description">
