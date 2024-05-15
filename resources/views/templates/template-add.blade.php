@@ -703,7 +703,7 @@ $i =1;
    function addQuestion(class_no) {
       var newQuestion = $(`<li class='sortable-item'>
          <div class='sortebla_item_edit'><span class='handle-dots ui-sortable-handle'><iconify-icon icon='ph:dots-six-vertical-bold'></iconify-icon></span>
-         <input type='text' class='question-input' name='question[0][${++i}][value]' placeholder='Type question'>
+         <input type='text' class='question-input' name='question[${class_no - 1}][${++i}][value]' placeholder='Type question'>
           <div class='col-lg-4'> <div class='answerboxwth_dropdown'> 
           <div type='button' id='text_${++j}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'><div class='responses-menu-item-styled'> <div color='#13855f' mode='light' class='response_chip_menu yesoption_menu'>Yes</div> <div color='#c60022' mode='light' class='response_chip_menu no_optionmenu'>No</div> <div color='#707070' mode='light' class='response_chip_menu na_responsice_menu'>N/A</div> </div></div>          <input type='hidden' name='question[0][${i}][question_type]' value=""></div> </div>
          </div>
