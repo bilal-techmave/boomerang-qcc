@@ -49,8 +49,8 @@ class TemplatesController extends Controller
         //     }
         // }
         // dd($count);
-
-        dd($request->all());
+            dd($request->hasFile('t_picture'));
+        
         try {
             $i = 0;
             $recordsToInsert = [];
@@ -58,9 +58,9 @@ class TemplatesController extends Controller
             foreach($request->question as $data){
                 $record = [
                     'template_id'        => $template->id,
-                    't_page_name'        => $request->page_title,
+                    't_page_name'        => $request->page_title ?? '',
                     't_section_name'     => $request->section_name ?? null,
-                    'filed_name'         => $data['value'],
+                    'filed_name'         => $data['value'] ?? '',
                     'field_type'         => $data['question_type'] ?? '',
                     'is_required'        => isset($data['is_required']) ? $data['is_required'] : '0',
                     'sort_no'            => ++$i,

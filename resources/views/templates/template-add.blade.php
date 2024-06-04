@@ -54,7 +54,7 @@ $i =1;
 <div class="container-fluid nopadding_custom">
    <div class="create_template_header">
       <div class="htem_text_back">
-         <a href="templates.php">
+         <a href="{{route('template.index')}}">
             <div class="title_page_template">
                <div class="backarrow_page">
                   <i class="fa-solid fa-arrow-left"></i>
@@ -88,7 +88,8 @@ $i =1;
                                           <!-- uploaded pic shown here -->
                                           <img id="profilePic" class="pic" src="../assets-tmp/images/new-images/sm-logo.png">
 
-                                          <input class="uploadProfileInput" type="file" name="t_picture" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+                                          <input class="uploadProfileInput" type="file" id="newProfilePhoto" name="t_picture" accept="image/*" style="opacity: 0;" />
+                                          <input type="hidden" name="selectedFileName" id="selectedFileName">
 
                                           <label for="newProfilePhoto" class="upload-file-block">
                                              <div class="text-center">
@@ -143,7 +144,7 @@ $i =1;
                                                    <span class="handle-dots">
                                                       <iconify-icon icon="ph:dots-six-vertical-bold"></iconify-icon>
                                                    </span>
-                                                   <input type="text" name="question[0][0][value]" class="question-input"
+                                                   <input type="text" name="question[0][value]" class="question-input"
                                                       placeholder="Type Question">
                                                    <div class="col-lg-4">
                                                       <div class="answerboxwth_dropdown">
@@ -153,7 +154,7 @@ $i =1;
                                                             <div class="iconaccordian_fields purpleiush_bg">T</div> Text
                                                             Answer
                                                          </div>
-                                                      <input type="hidden" name="question[0][0][question_type]" value="text_answer">
+                                                      <input type="hidden" name="question[0][question_type]" value="text_answer">
 
                                                       </div>
                                                    </div>
@@ -170,7 +171,7 @@ $i =1;
                                                          </div>
                                                          <div class="required_firlscheck">
                                                             <div class="form-check">
-                                                               <input class="form-check-input" name="question[0][0][is_required]" type="checkbox" value="1"
+                                                               <input class="form-check-input" name="question[0][is_required]" type="checkbox" value="1"
                                                                   id="flexCheckDefault">
                                                                <label class="form-check-label" for="flexCheckDefault">
                                                                   Required
@@ -217,17 +218,17 @@ $i =1;
                                              Add Question
                                           </button>
 
-                                          <div class="addsectionbutton">
+                                          <!-- <div class="addsectionbutton">
                                              <button type="button">
                                                 <iconify-icon icon="tabler:section"></iconify-icon> Add Section
                                              </button>
-                                          </div>
+                                          </div> -->
 
-                                          <div class="addnew_page_button">
+                                          <!-- <div class="addnew_page_button">
                                              <button type="button" class="add-page">
                                                 <iconify-icon icon="iconoir:page-flip"></iconify-icon> Add Page
                                              </button>
-                                          </div>
+                                          </div> -->
                                           <div class="addnew_page_button">
                                              <button type="submit">
                                                 <iconify-icon icon="iconoir:page-flip"></iconify-icon> submit
@@ -571,11 +572,30 @@ $i =1;
 <!-- @include('templates.footer') -->
 <!-- template icon upload js -->
 <script>
+   $(document).ready(function() {
+    // Add click event listener to the button for file selection
+    $("#selectProfilePhoto").click(function() {
+        // Trigger click event on the hidden file input field
+        $("#newProfilePhoto").click();
+    });
+
+    // Add change event listener to the file input field
+    $("#newProfilePhoto").change(function(event) {
+        // Get the selected file
+        var file = event.target.files[0];
+        if (file) {
+            // Set the file name to the hidden input field
+            $("#selectedFileName").val(file.name);
+        }
+    });
+});
+</script>
+<script>
    document.addEventListener("change", function(event) {
       if (event.target.classList.contains("uploadProfileInput")) {
          var triggerInput = event.target;
-         var currentImg = triggerInput.closest(".pic-holder").querySelector(".pic")
-            .src;
+         var currentImg = triggerInput.closest(".pic-holder").querySelector(".pic").src;
+         // alert(triggerInput);
          var holder = triggerInput.closest(".pic-holder");
          var wrapper = triggerInput.closest(".profile-pic-wrapper");
          var alerts = wrapper.querySelectorAll('[role="alert"]');
@@ -703,11 +723,11 @@ $i =1;
    function addQuestion(class_no) {
       var newQuestion = $(`<li class='sortable-item'>
          <div class='sortebla_item_edit'><span class='handle-dots ui-sortable-handle'><iconify-icon icon='ph:dots-six-vertical-bold'></iconify-icon></span>
-         <input type='text' class='question-input' name='question[${class_no - 1}][${++i}][value]' placeholder='Type question'>
+         <input type='text' class='question-input' name='question[${++i}][value]' placeholder='Type question'>
           <div class='col-lg-4'> <div class='answerboxwth_dropdown'> 
-          <div type='button' id='text_${++j}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'><div class='responses-menu-item-styled'> <div color='#13855f' mode='light' class='response_chip_menu yesoption_menu'>Yes</div> <div color='#c60022' mode='light' class='response_chip_menu no_optionmenu'>No</div> <div color='#707070' mode='light' class='response_chip_menu na_responsice_menu'>N/A</div> </div></div>          <input type='hidden' name='question[0][${i}][question_type]' value=""></div> </div>
+          <div type='button' id='text_${++j}' class='answer-button  accordion-button' onclick='toggleAccordion(this)'><div class='responses-menu-item-styled'> <div color='#13855f' mode='light' class='response_chip_menu yesoption_menu'>Yes</div> <div color='#c60022' mode='light' class='response_chip_menu no_optionmenu'>No</div> <div color='#707070' mode='light' class='response_chip_menu na_responsice_menu'>N/A</div> </div></div>          <input type='hidden' name='question[${i}][question_type]' value=""></div> </div>
          </div>
-         <div class='accordion-content'> <div class='item-settings__Container'> <div class='leftfield_setting_container'> <div class='link__Link_logic'> <span ><iconify-icon icon='simple-line-icons:graph'></iconify-icon> Add logic</span> </div> <div class='required_firlscheck'> <div class='form-check'> <input class='form-check-input' type='checkbox' name='question[0][${i}][is_required]' id='flexCheckDefault' value="1"> <label class='form-check-label' for='flexCheckDefault'> Required </label> </div> </div> <div> <div class='field_format'>Format: <span role='button' class=''>Short answer</span></div> </div> </div> <div> <div class='dropdown answeraction_dropdown'> <a class='dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'> <iconify-icon icon='entypo:dots-three-vertical'></iconify-icon> </a> <ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'> <li><a class='dropdown-item' href='#'><iconify-icon icon='lets-icons:notebook-fill'></iconify-icon> Paste Questions</a></li> </ul> </div> </div> </div> <button class='delete-button' onclick='deleteItem(this)'><iconify-icon icon='fluent:delete-28-regular'></iconify-icon></button> </div>
+         <div class='accordion-content'> <div class='item-settings__Container'> <div class='leftfield_setting_container'> <div class='link__Link_logic'> <span ><iconify-icon icon='simple-line-icons:graph'></iconify-icon> Add logic</span> </div> <div class='required_firlscheck'> <div class='form-check'> <input class='form-check-input' type='checkbox' name='question[${i}][is_required]' id='flexCheckDefault' value="1"> <label class='form-check-label' for='flexCheckDefault'> Required </label> </div> </div> <div> <div class='field_format'>Format: <span role='button' class=''>Short answer</span></div> </div> </div> <div> <div class='dropdown answeraction_dropdown'> <a class='dropdown-toggle' href='#' role='button' id='dropdownMenuLink' data-bs-toggle='dropdown' aria-expanded='false'> <iconify-icon icon='entypo:dots-three-vertical'></iconify-icon> </a> <ul class='dropdown-menu' aria-labelledby='dropdownMenuLink'> <li><a class='dropdown-item' href='#'><iconify-icon icon='lets-icons:notebook-fill'></iconify-icon> Paste Questions</a></li> </ul> </div> </div> </div> <button class='delete-button' onclick='deleteItem(this)'><iconify-icon icon='fluent:delete-28-regular'></iconify-icon></button> </div>
          </li>`);
          // alert(class_no);
       $(".sortable-list_" + class_no).append(newQuestion);
@@ -770,7 +790,7 @@ $i =1;
    });
 </script>
 
-<script>
+<!-- <script>
    $(document).ready(function() {
        $(".add-page").click(function() {
          var class_no = $('#class_no').val();
@@ -789,7 +809,7 @@ $i =1;
            });
        });
    });
-</script>
+</script> -->
 
 <!-- end -->
 
