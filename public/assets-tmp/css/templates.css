@@ -3634,3 +3634,9 @@ section.schedule {
     color: #000;
     padding: 5px;
 }
+.templetes_ghu input {
+	font-size: unset !important;
+	color: unset !important;
+	opacity: 0 !important;
+	font-weight: unset;
+}

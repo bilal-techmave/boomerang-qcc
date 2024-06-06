@@ -109,7 +109,7 @@
                                     </td>
                                     <td>{{$data->timeDisplay}}</td>
                                     <td><i class="fa-regular fa-user"></i> All Users</td>
-                                    <td><a href="{{route('inspections.create')}}"><button type="button" class="start_inspectionbtn">Start inspection</button></a></td>
+                                    <td><a href="{{route('inspections.create', encrypt($data->id))}}"><button type="button" class="start_inspectionbtn">Start inspection</button></a></td>
                                     <td >
                                        <div class="dropdown notification-list topbar-dropdown" id="table_dropdownm">
                                           <a class="user_profile nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">

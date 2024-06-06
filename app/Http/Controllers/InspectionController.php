@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Common\ImageController;
 use Illuminate\Http\UploadedFile;
-use App\Models\{Inspection, InspectionField, InspectionAction};
+use App\Models\{Inspection, InspectionField, InspectionAction, TemplateField};
 
 
 class InspectionController extends Controller
@@ -15,9 +15,11 @@ class InspectionController extends Controller
         return view('inspection.inspections');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('inspection.start-inspection');
+        $fields = TemplateField::where('template_id', decrypt($request->id))->get();
+        // dd($fields);
+        return view('inspection.start-inspection', compact('fields'));
     }
 
     public function store(Request $request)

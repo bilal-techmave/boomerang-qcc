@@ -252,7 +252,7 @@ Route::group(['prefix'=>'templates','as'=>'template.','middleware'=>'auth'], fun
 
 Route::group(['prefix'=>'inspections','as'=>'inspections.','middleware'=>'auth'], function(){
     Route::get('/', [InspectionController::class,'index'])->name('index');
-    Route::get('/add', [InspectionController::class,'create'])->name('create');
+    Route::get('/add/{id}', [InspectionController::class,'create'])->name('create');
     Route::get('/view-reportd', [InspectionController::class,'viewReport'])->name('viewReport');
     Route::get('/view-history', [InspectionController::class,'viewHistory'])->name('viewHistory');
     Route::post('/store', [InspectionController::class,'store'])->name('store');
