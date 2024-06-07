@@ -18,12 +18,14 @@ class InspectionController extends Controller
     public function create(Request $request)
     {
         $fields = TemplateField::where('template_id', decrypt($request->id))->get();
+        // $inspection = Inspection::create(['template_id' => decrypt($request->id)]);
         // dd($fields);
         return view('inspection.start-inspection', compact('fields'));
     }
 
     public function store(Request $request)
     {
+        dd($request->all());
         try{
             $data = request()->all();
             // dd($data);
@@ -50,12 +52,12 @@ class InspectionController extends Controller
                 $firstKey = key($value);
                 $firstValue = current($value);
             
-                if (isset($value['media']) && $value['media'] && $value['media']->isValid()) {
+                if(isset($value['media']) && $value['media'] && $value['media']->isValid()){
                     $file = $value['media'];
                     $dateFolder = 'inspection/uploads';
                     $uploadAttachment_imageupload = ImageController::upload($file, $dateFolder);
                     $value['attachment'] = $uploadAttachment_imageupload;
-                } else {
+                }else{
                     $value['attachment'] = null;
                 }
             // dd($firstValue);
@@ -80,7 +82,7 @@ class InspectionController extends Controller
             if($inspection && $inspection_field && $inspection_action){
                 return redirect()->back()->with('success','Inspection completed successfuly.');
             }
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $data = [
                 $e->getMessage(),
                 $e->getLine(),

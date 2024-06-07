@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class='field_format'>Format: <span role='button' class=''>Short answer</span></div>
+                    <!-- <div class='field_format'>Format: <span role='button' class=''>Short answer</span></div> -->
                 </div>
             </div>
             <div>
