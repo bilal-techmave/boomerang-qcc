@@ -880,7 +880,7 @@
 <!-- map modal js start -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA85KpTqFdcQZH6x7tnzu6tjQRlqyzAn-s&callback=initMap&libraries=places" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{env('YOUR_ENV_VARIABLE')}}&callback=initMap&libraries=places" async defer></script>
     <script>
         let map;
         let marker;
