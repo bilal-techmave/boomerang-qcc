@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Common\ImageController;
 use Illuminate\Http\UploadedFile;
 use App\Models\{Inspection, InspectionField, InspectionAction, TemplateField};
+use Storage;
 
 
 class InspectionController extends Controller
@@ -18,24 +19,23 @@ class InspectionController extends Controller
     public function create(Request $request)
     {
         $fields = TemplateField::where('template_id', decrypt($request->id))->get();
+        $apiKey = env('GOOGLE_MAPS_API_KEY');
         // $inspection = Inspection::create(['template_id' => decrypt($request->id)]);
         // dd($fields);
-        return view('inspection.start-inspection', compact('fields'));
+        return view('inspection.start-inspection', compact('fields', 'apiKey'));
     }
 
     public function store(Request $request)
     {
         dd($request->all());
         try{
-            $data = request()->all();
-            // dd($data);
-            $nonNullCount = count(array_filter($data, function($value) {
+            $data = $request->all();
+            $nonNullCount = count(array_filter($data, function ($value) {
                 return !is_null($value);
             }));
             $totalFields = isset($data['question']) && is_array($data['question']) ? count($data['question']) : 0;
             $percentage = ($totalFields > 0) ? ($nonNullCount / $totalFields) * 100 : 0;
             $percentage = round($percentage);
-            // dd($percentage);
 
             $inspection = Inspection::create([
                     'template_id'  => 1,
@@ -46,35 +46,48 @@ class InspectionController extends Controller
 
             $all_action_records = [];
 
-            foreach ($data['question'] as $key => $value) {
-                reset($value);
-            
-                $firstKey = key($value);
-                $firstValue = current($value);
-            
-                if(isset($value['media']) && $value['media'] && $value['media']->isValid()){
-                    $file = $value['media'];
-                    $dateFolder = 'inspection/uploads';
-                    $uploadAttachment_imageupload = ImageController::upload($file, $dateFolder);
-                    $value['attachment'] = $uploadAttachment_imageupload;
-                }else{
-                    $value['attachment'] = null;
+            foreach ($data['question'] as $key => $fields) {
+                $inspection_field_id = null;
+    
+                foreach ($fields as $fieldKey => $fieldValue) {
+                    // Handle file uploads
+                    if ($request->hasFile("question.$key.$fieldKey") && $fieldKey != 'media') {
+                        $file = $request->file("question.$key.$fieldKey");
+                        $dateFolder = 'inspection/uploads';
+                        $fieldValue = ImageController::upload($file, $dateFolder);
+                    }
+    
+                    if ($fieldKey == 'media' && isset($fields['media']) && $fields['media']->isValid()) {
+                        $file = $fields['media'];
+                        $dateFolder = 'inspection/uploads';
+                        $uploadAttachment_imageupload = ImageController::upload($file, $dateFolder);
+                        $fields['attachment'] = $uploadAttachment_imageupload;
+                    } else {
+                        $fields['attachment'] = null;
+                    }
+    
+                    // Create the InspectionField record
+                    if (!in_array($fieldKey, ['media', 'note', 'action'])) {
+                        $inspection_field = InspectionField::create([
+                            'inspection_id' => $inspection->id,
+                            'filed_name'    => $fieldKey,
+                            'filed_data'    => is_array($fieldValue) ? json_encode($fieldValue) : $fieldValue,
+                        ]);
+    
+                        // Store the inspection_field_id to be used in action records
+                        $inspection_field_id = $inspection_field->id;
+                    }
                 }
-            // dd($firstValue);
-                $inspection_field = InspectionField::create([
-                    'inspection_id'  => $inspection->id,
-                    'filed_name'     => $firstKey,  
-                    'filed_data'     => $firstValue,
-                ]);
-
+    
+                // Prepare the action records
                 $action_records = [
-                    'inspection_id'         => $inspection->id,
-                    'inspection_field_id'   => $inspection_field->id,
-                    'note'                  => $value['note'] ?? null,
-                    'media'                 => $value['attachment'] ?? null,
-                    'action'                => isset($value['action']) ? json_encode($value['action']) : null,
+                    'inspection_id'       => $inspection->id,
+                    'inspection_field_id' => $inspection_field_id,
+                    'note'                => $fields['note'] ?? null,
+                    'media'               => $fields['attachment'],
+                    'action'              => isset($fields['action']) ? json_encode($fields['action']) : null,
                 ];
-
+    
                 $all_action_records[] = $action_records;
             }
 

@@ -59,7 +59,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <div class="mb-3 mt-3 mt-sm-0">
+                                                    <div class="mb-3 mt-3 mt-sm-0" >
                                                         <label class="form-label">Type </label>
                                                         <select data-plugin="customselect" name="type"
                                                             class="form-select">
