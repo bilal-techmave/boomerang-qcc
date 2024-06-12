@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Common\ImageController;
 use Illuminate\Http\UploadedFile;
-use App\Models\{Inspection, InspectionField, InspectionAction, TemplateField};
+use App\Models\{Inspection, InspectionField, InspectionAction, TemplateField, TemplateInspectionField, TemplateInspection, Template};
 use Storage;
+use DB;
 
 
 class InspectionController extends Controller
@@ -18,16 +19,29 @@ class InspectionController extends Controller
 
     public function create(Request $request)
     {
-        $fields = TemplateField::where('template_id', decrypt($request->id))->get();
+
         $apiKey = env('GOOGLE_MAPS_API_KEY');
-        // $inspection = Inspection::create(['template_id' => decrypt($request->id)]);
-        // dd($fields);
+
+        $template = Template::where('id', decrypt($request->id))->first();
+        $templateData = $template->toArray();
+        unset($templateData['id']);
+        $template_inspection = TemplateInspection::create($templateData);
+
+        $fields = TemplateField::where('template_id', decrypt($request->id))->get();
+        $fieldsArray = $fields->map(function ($field) use ($template_inspection) {
+            $field->template_id = $template_inspection->id;
+            return $field->toArray();
+        })->toArray();
+
+        TemplateInspectionField::insert($fieldsArray);
+
+        // Return the view with the necessary data
         return view('inspection.start-inspection', compact('fields', 'apiKey'));
     }
 
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         try{
             $data = $request->all();
             $nonNullCount = count(array_filter($data, function ($value) {
