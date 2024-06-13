@@ -46,30 +46,24 @@
                                 <div id="myDropdown" class="dropdown-content">
 
                                     <div class="nested-dropdown" id="accessNestedDropdown">
-                                        <button class="dropbtn"
-                                            onclick="toggleNestedDropdown('accessDropdown')">Access</button>
+                                        <button class="dropbtn" onclick="toggleNestedDropdown('accessDropdown')">Access</button>
                                     </div>
                                     <div class="nested-dropdown" id="templateNestedDropdown">
-                                        <button class="dropbtn"
-                                            onclick="toggleNestedDropdown('templateDropdown')">Template</button>
+                                        <button class="dropbtn" onclick="toggleNestedDropdown('templateDropdown')">Template</button>
                                     </div>
                                     <div class="nested-dropdown" id="groupNestedDropdown">
-                                        <button class="dropbtn"
-                                            onclick="toggleNestedDropdown('groupDropdown')">Group</button>
+                                        <button class="dropbtn" onclick="toggleNestedDropdown('groupDropdown')">Group</button>
                                     </div>
                                     <div class="nested-dropdown" id="siteNestedDropdown">
-                                        <button class="dropbtn"
-                                            onclick="toggleNestedDropdown('siteDropdown')">Site</button>
+                                        <button class="dropbtn" onclick="toggleNestedDropdown('siteDropdown')">Site</button>
                                     </div>
 
                                     <div class="nested-dropdown" id="conductedNestedDropdown">
-                                        <button class="dropbtn"
-                                            onclick="toggleNestedDropdown('conductedDropdown')">Conducted Date</button>
+                                        <button class="dropbtn" onclick="toggleNestedDropdown('conductedDropdown')">Conducted Date</button>
                                     </div>
 
                                     <div class="nested-dropdown" id="completeNestedDropdown">
-                                        <button class="dropbtn"
-                                            onclick="toggleNestedDropdown('completedDropdown')">Completed Date</button>
+                                        <button class="dropbtn" onclick="toggleNestedDropdown('completedDropdown')">Completed Date</button>
                                     </div>
 
                                     <!-- <div class="nested-dropdown" id="assetNestedDropdown">
@@ -82,14 +76,12 @@
 
                             <div id="accessDropdown" class="dropdown-content innerdropdown_container">
 
-                                <input type="text" class="search-bar" oninput="filterDropdown('accessDropdown')"
-                                    placeholder="Search..." onclick="handleSearchBarClick(event, 'accessDropdown')">
+                                <input type="text" class="search-bar" oninput="filterDropdown('accessDropdown')" placeholder="Search..." onclick="handleSearchBarClick(event, 'accessDropdown')">
                                 <div class="dropmenu_listC_Container">
                                     <h2>All filters</h2>
                                     <a href="#" onclick="selectOption('Access: Sub-option 1')">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 Owned by me
                                             </label>
@@ -97,8 +89,7 @@
                                     </a>
                                     <a href="#" onclick="selectOption('Access: Sub-option 2')">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 Shared with me
                                             </label>
@@ -109,8 +100,7 @@
                             </div>
 
                             <div id="templateDropdown" class="dropdown-content innerdropdown_container">
-                                <input type="text" class="search-bar" oninput="filterDropdown('templateDropdown')"
-                                    placeholder="Search..." onclick="handleSearchBarClick(event, 'templateDropdown')">
+                                <input type="text" class="search-bar" oninput="filterDropdown('templateDropdown')" placeholder="Search..." onclick="handleSearchBarClick(event, 'templateDropdown')">
                                 <div class="dropmenu_listC_Container">
                                     <div class="dropmenu_listC_Container">
                                         <h2>ALL TEMPLATES</h2>
@@ -143,8 +133,7 @@
                             </div>
 
                             <div id="groupDropdown" class="dropdown-content innerdropdown_container">
-                                <input type="text" class="search-bar" oninput="filterDropdown('groupDropdown')"
-                                    placeholder="Search..." onclick="handleSearchBarClick(event, 'groupDropdown')">
+                                <input type="text" class="search-bar" oninput="filterDropdown('groupDropdown')" placeholder="Search..." onclick="handleSearchBarClick(event, 'groupDropdown')">
                                 <div class="dropmenu_listC_Container">
                                     <a href="#" onclick="selectOption('Groups: All Audits')">
                                         <div class="form-check">
@@ -154,8 +143,7 @@
                                             </label>
                                         </div>
                                     </a>
-                                    <a href="#"
-                                        onclick="selectOption('Groups: All users (Quality Commercial Cleaning Pty Ltd)')">
+                                    <a href="#" onclick="selectOption('Groups: All users (Quality Commercial Cleaning Pty Ltd)')">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value="" id="gropinp2">
                                             <label class="form-check-label" for="gropinp2">
@@ -167,8 +155,7 @@
                                 </div>
                             </div>
                             <div id="siteDropdown" class="dropdown-content innerdropdown_container">
-                                <input type="text" class="search-bar" oninput="filterDropdown('siteDropdown')"
-                                    placeholder="Search..." onclick="handleSearchBarClick(event, 'siteDropdown')">
+                                <input type="text" class="search-bar" oninput="filterDropdown('siteDropdown')" placeholder="Search..." onclick="handleSearchBarClick(event, 'siteDropdown')">
                                 <div class="dropmenu_listC_Container">
                                     <div class="site_multilevel_menu">
                                         <ul>
@@ -181,11 +168,8 @@
                                                 </div>
                                                 <div class="layer1 side-menu" id="layer2" style="height: 100%;">
                                                     <ul data-value="2">
-                                                        <li><a href="#" onclick="selectOption('Site: ARIA')" class="l1"
-                                                                value="3">ARIA</a></li>
-                                                        <li><a href="#"
-                                                                onclick="selectOption('Site: Digital Sponsor Link')"
-                                                                class="l1" value="3">Digital Sponsor
+                                                        <li><a href="#" onclick="selectOption('Site: ARIA')" class="l1" value="3">ARIA</a></li>
+                                                        <li><a href="#" onclick="selectOption('Site: Digital Sponsor Link')" class="l1" value="3">Digital Sponsor
                                                                 Link</a></li>
                                                     </ul>
                                                 </div>
@@ -199,12 +183,8 @@
                                                 </div>
                                                 <div class="layer1 side-menu" id="layer2" style="height: 100%;">
                                                     <ul data-value="2">
-                                                        <li><a href="#"
-                                                                onclick="selectOption('Site: Somerset Regional Council')"
-                                                                class="l1" value="3">Somerset Regional Council</a></li>
-                                                        <li><a href="#"
-                                                                onclick="selectOption('Site: Toowoomba Police Station')"
-                                                                class="l1" value="3">Toowoomba Police Station
+                                                        <li><a href="#" onclick="selectOption('Site: Somerset Regional Council')" class="l1" value="3">Somerset Regional Council</a></li>
+                                                        <li><a href="#" onclick="selectOption('Site: Toowoomba Police Station')" class="l1" value="3">Toowoomba Police Station
                                                                 Link</a></li>
                                                     </ul>
                                                 </div>
@@ -217,8 +197,7 @@
                             </div>
 
                             <div id="conductedDropdown" class="dropdown-content innerdropdown_container">
-                                <input type="text" class="search-bar" oninput="filterDropdown('conductedDropdown')"
-                                    placeholder="Search..." onclick="handleSearchBarClick(event, 'conductedDropdown')">
+                                <input type="text" class="search-bar" oninput="filterDropdown('conductedDropdown')" placeholder="Search..." onclick="handleSearchBarClick(event, 'conductedDropdown')">
                                 <div class="dropmenu_listC_Container">
                                     <a href="#" onclick="selectOption('Conducted date: Today')">Today</a>
                                     <a href="#" onclick="selectOption('Conducted date: Yesterday')">Yesterday</a>
@@ -231,8 +210,7 @@
                             </div>
 
                             <div id="completedDropdown" class="dropdown-content innerdropdown_container">
-                                <input type="text" class="search-bar" oninput="filterDropdown('completedDropdown')"
-                                    placeholder="Search..." onclick="handleSearchBarClick(event, 'completedDropdown')">
+                                <input type="text" class="search-bar" oninput="filterDropdown('completedDropdown')" placeholder="Search..." onclick="handleSearchBarClick(event, 'completedDropdown')">
                                 <div class="dropmenu_listC_Container">
                                     <a href="#" onclick="selectOption('Completed date: Today')">Today</a>
                                     <a href="#" onclick="selectOption('Completed date: Yesterday')">Yesterday</a>
@@ -261,10 +239,10 @@
                                 <table id="basic-datatable" class="table table-bordered   nowrap w-100">
                                     <thead>
                                         <tr>
-                                            <th>S.No.</th>
+                                            <!-- <th>S.No.</th> -->
                                             <th>Inspection</th>
                                             <th>Actions</th>
-                                            <th>Doc number</th>
+                                            <!-- <th>Doc number</th> -->
                                             <th>Score</th>
                                             <th>Conducted</th>
                                             <th>Completed</th>
@@ -276,52 +254,49 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach ($inspection_template as $data)
                                         <tr class="status-ticket-high odd" role="row">
-
-                                            <td class="sorting_1"><input type="checkbox"></td>
+                                            <!-- <td class="sorting_1"><input type="checkbox"></td> -->
                                             <td>
                                                 <div class="flex_titlew_avtar inspectionTitle_conter_table">
                                                     <div class="inspectTit_innerbox">
                                                         <div class="avtarprofile_custom">
-                                                            <img src="../assets-tmp/images/new-images/boomrang-icon.png"
-                                                                alt="">
+                                                            @if($data['templateInspection']->t_picture && Storage::exists($data['templateInspection']->t_picture))
+                                                            <img src="{{asset(Storage::url($data['templateInspection']->t_picture))}}" alt="">
+                                                            @else
+                                                            <img src="../assets-tmp/images/new-images/boomrang-icon.png" alt="">
+                                                            @endif
                                                         </div>
                                                         <div class="INSP_title_right">
                                                             <div class="inspectinTable_listtitle">
-                                                                <span>19 Dec 2023 / Luan Ramos</span>
+                                                                <span>{{$data['templateInspection']->created_at->format('d M, Y')}}</span>
                                                             </div>
                                                             <div class="INSpTAb_descript">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                                    elit. Fugiat dicta rem architecto.</p>
+                                                                <p>{{$data['templateInspection']->t_name}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td></td>
-                                            <td></td>
-                                            <td>10%</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>19 Dec 2023</td>
+                                            <!-- <td></td> -->
+                                            <td>{{$data->score != null ? $data->score : '0'}}%</td>
+                                            <td>{{$data->created_at->format('d M, Y')}}</td>
+                                            <td>{{$data->completed != null ? $data->completed->format('d M, Y') : ''}}</td>
                                             <td>
-                                            
-                                                <a href="{{route('inspections.viewReport')}}"><div class="status_completeView">View Report</div></a>
+                                                <a href="{{route('inspections.viewReport')}}">
+                                                    <div class="status_completeView">View Report</div>
+                                                </a>
                                             </td>
                                             <td>
-                                                <div class="dropdown notification-list topbar-dropdown"
-                                                    id="table_dropdownm">
-                                                    <a class="user_profile nav-link dropdown-toggle nav-user me-0"
-                                                        data-bs-toggle="dropdown" href="#" role="button"
-                                                        aria-haspopup="false" aria-expanded="false">
+                                                <div class="dropdown notification-list topbar-dropdown" id="table_dropdownm">
+                                                    <a class="user_profile nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                                         <i class="fa-solid fa-ellipsis-vertical"></i>
-
                                                     </a>
                                                     <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
                                                     <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
                                                         <a href="{{route('inspections.edit')}}" class="dropdown-item notify-item">
-                                                            <i class="fa-solid fa-pencil"></i><span>Edit
-                                                                Inspection</span>
+                                                            <i class="fa-solid fa-pencil"></i><span>Edit Inspection</span>
                                                         </a>
 
                                                         <a href="profile.php" class="dropdown-item notify-item">
@@ -334,8 +309,7 @@
                                                         </a>
 
                                                         <a href="{{route('inspections.viewHistory')}}" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-clipboard"></i><span>View
-                                                                History</span>
+                                                            <i class="fa-regular fa-clipboard"></i><span>View History</span>
                                                         </a>
 
                                                     </div>
@@ -343,204 +317,7 @@
 
                                             </td>
                                         </tr>
-
-                                        <tr class="status-ticket-high even" role="row">
-
-                                            <td class="sorting_1"><input type="checkbox"></td>
-                                            <td>
-                                                <div class="flex_titlew_avtar inspectionTitle_conter_table">
-                                                    <div class="inspectTit_innerbox">
-                                                        <div class="avtarprofile_custom">
-                                                            <img src="../assets-tmp/images/new-images/boomrang-icon.png"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="INSP_title_right">
-                                                            <div class="inspectinTable_listtitle">
-                                                                <span>18 Dec 2023 / Luan Ramos</span>
-                                                            </div>
-                                                            <div class="INSpTAb_descript">
-                                                                <p>Test</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>18%</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>
-                                                <div class="status_completeView">Continue</div>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown notification-list topbar-dropdown"
-                                                    id="table_dropdownm">
-                                                    <a class="user_profile nav-link dropdown-toggle nav-user me-0"
-                                                        data-bs-toggle="dropdown" href="#" role="button"
-                                                        aria-haspopup="false" aria-expanded="false">
-                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-
-                                                    </a>
-                                                    <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
-                                                    <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                                                        <a href="start-inspection.php" class="dropdown-item notify-item">
-                                                            <i class="fa-solid fa-pencil"></i><span>Edit
-                                                                Inspection</span>
-                                                        </a>
-
-                                                        <a href="profile.php" class="dropdown-item notify-item">
-                                                            <iconify-icon icon="heroicons-solid:duplicate">
-                                                            </iconify-icon><span>Duplicate Inspection</span>
-                                                        </a>
-
-                                                        <a href="login.php" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-eye"></i><span>View Report</span>
-                                                        </a>
-
-                                                        <a href="inspection-history.php" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-clipboard"></i><span>View
-                                                                History</span>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-
-                                        <tr class="status-ticket-high odd" role="row">
-
-                                            <td class="sorting_1"><input type="checkbox"></td>
-                                            <td>
-                                                <div class="flex_titlew_avtar inspectionTitle_conter_table">
-                                                    <div class="inspectTit_innerbox">
-                                                        <div class="avtarprofile_custom">
-                                                            <img src="../assets-tmp/images/new-images/boomrang-icon.png"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="INSP_title_right">
-                                                            <div class="inspectinTable_listtitle">
-                                                                <span>19 Dec 2023 / Ahmer Ehsan </span>
-                                                            </div>
-                                                            <div class="INSpTAb_descript">
-                                                                <p>Demo1</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>0%</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>
-                                                <div class="status_completeView">Continue</div>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown notification-list topbar-dropdown"
-                                                    id="table_dropdownm">
-                                                    <a class="user_profile nav-link dropdown-toggle nav-user me-0"
-                                                        data-bs-toggle="dropdown" href="#" role="button"
-                                                        aria-haspopup="false" aria-expanded="false">
-                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-
-                                                    </a>
-                                                    <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
-                                                    <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                                                        <a href="start-inspection.php" class="dropdown-item notify-item">
-                                                            <i class="fa-solid fa-pencil"></i><span>Edit
-                                                                Inspection</span>
-                                                        </a>
-
-                                                        <a href="profile.php" class="dropdown-item notify-item">
-                                                            <iconify-icon icon="heroicons-solid:duplicate">
-                                                            </iconify-icon><span>Duplicate Inspection</span>
-                                                        </a>
-
-                                                        <a href="login.php" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-eye"></i><span>View Report</span>
-                                                        </a>
-
-                                                        <a href="inspection-history.php" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-clipboard"></i><span>View
-                                                                History</span>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-
-                                        <tr class="status-ticket-high even" role="row">
-
-                                            <td class="sorting_1"><input type="checkbox"></td>
-                                            <td>
-                                                <div class="flex_titlew_avtar inspectionTitle_conter_table">
-                                                    <div class="inspectTit_innerbox">
-                                                        <div class="avtarprofile_custom">
-                                                            <img src="../assets-tmp/images/new-images/boomrang-icon.png"
-                                                                alt="">
-                                                        </div>
-                                                        <div class="INSP_title_right">
-                                                            <div class="inspectinTable_listtitle">
-                                                                <span>19 Dec 2023 / Luan Ramos</span>
-                                                            </div>
-                                                            <div class="INSpTAb_descript">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing
-                                                                    elit. Fugiat dicta rem architecto.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>0%</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>19 Dec 2023</td>
-                                            <td>
-                                            <a href="inspection-report-view.php"><div class="status_completeView">View Report</div></a>
-
-                                            </td>
-                                            <td>
-                                                <div class="dropdown notification-list topbar-dropdown"
-                                                    id="table_dropdownm">
-                                                    <a class="user_profile nav-link dropdown-toggle nav-user me-0"
-                                                        data-bs-toggle="dropdown" href="#" role="button"
-                                                        aria-haspopup="false" aria-expanded="false">
-                                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-
-                                                    </a>
-                                                    <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
-                                                    <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                                                        <a href="start-inspection.php" class="dropdown-item notify-item">
-                                                            <i class="fa-solid fa-pencil"></i><span>Edit
-                                                                Inspection</span>
-                                                        </a>
-
-                                                        <a href="profile.php" class="dropdown-item notify-item">
-                                                            <iconify-icon icon="heroicons-solid:duplicate">
-                                                            </iconify-icon><span>Duplicate Inspection</span>
-                                                        </a>
-
-                                                        <a href="login.php" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-eye"></i><span>View Report</span>
-                                                        </a>
-
-                                                        <a href="inspection-history.php" class="dropdown-item notify-item">
-                                                            <i class="fa-regular fa-clipboard"></i><span>View
-                                                                History</span>
-                                                        </a>
-
-                                                    </div>
-                                                </div>
-
-                                            </td>
-                                        </tr>
-
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -578,11 +355,9 @@
 
 <!-- create template off canvas start -->
 
-<div class="offcanvas cuatomoffcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
-    aria-labelledby="offcanvasBottomLabel">
+<div class="offcanvas cuatomoffcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasBottomLabel" data-bs-dismiss="offcanvas" aria-label="Close"><i
-                class="fa-solid fa-arrow-left"></i></h5>
+        <h5 class="offcanvas-title" id="offcanvasBottomLabel" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-arrow-left"></i></h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body small">
@@ -801,18 +576,15 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="mb-3">
-                                <input type="text" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp" placeholder="">
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btncancel_process"
-                    data-bs-dismiss="modal">Cancel</button>
-                <a href="blank-template.php"><button type="button"
-                        class="btn btn-primary btncontinue_process">Continue</button></a>
+                <button type="button" class="btn btn-secondary btncancel_process" data-bs-dismiss="modal">Cancel</button>
+                <a href="blank-template.php"><button type="button" class="btn btn-primary btncontinue_process">Continue</button></a>
             </div>
         </div>
     </div>

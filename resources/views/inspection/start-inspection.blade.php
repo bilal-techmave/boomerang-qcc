@@ -110,10 +110,13 @@
                      </div>
                   </div>
                </div>
+               
                <div class="wizard-form">
                   <form id="myForm" action="{{route('inspections.store')}}" method="post" enctype="multipart/form-data">@csrf
                      <div class="step" id="step1">
                         <h2 class="title_wizard_stepmain">Untitled Page</h2>
+                        <input type="hidden" name="template_id" value="{{$inspection->template_id}}">
+                        <input type="hidden" name="inspection_id" value="{{$inspection->id}}">
                         @foreach ($fields as $key => $value)
                         @switch($value->field_type)
                         @case('date_time')

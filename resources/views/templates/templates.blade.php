@@ -33,11 +33,11 @@
                      <div class="col-lg-6">
                         <div class="card_createtemp">
                            <a href="blank-template.php">
-                           <a class="temmain_card" href="{{route('template.create')}}">
-                              <i class="fa-solid fa-plus"></i>
-                              <div class="title_tem_card">Start from scratch</div>
-                              <div class="subtitle_temcard">Get started with a blank template.</div>
-                           </a>
+                              <a class="temmain_card" href="{{route('template.create')}}">
+                                 <i class="fa-solid fa-plus"></i>
+                                 <div class="title_tem_card">Start from scratch</div>
+                                 <div class="subtitle_temcard">Get started with a blank template.</div>
+                              </a>
                            </a>
                         </div>
                      </div>
@@ -97,42 +97,46 @@
                            </thead>
                            <tbody>
                               @foreach($templates as $data)
-                                 <tr class="status-ticket-high odd" role="row">
-                                    <td class="sorting_1">{{ $loop->iteration  }}</td>
-                                    <td>
-                                       <div class="flex_titlew_avtar">
-                                          <div class="avtarprofile_custom">
-                                             <img src="{{$data->t_picture}}" alt="">
-                                          </div>
-                                          <span>Office of Industrial Relations</span>
+                              <tr class="status-ticket-high odd" role="row">
+                                 <td class="sorting_1">{{ $loop->iteration  }}</td>
+                                 <td>
+                                    <div class="flex_titlew_avtar">
+                                       <div class="avtarprofile_custom">
+                                          @if($data->t_picture && Storage::exists($data->t_picture))
+                                          <img src="{{$data->t_picture}}" alt="">
+                                          @else
+                                          <img src="../assets-tmp/images/new-images/boomrang-icon.png" alt="">
+                                          @endif
                                        </div>
-                                    </td>
-                                    <td>{{$data->timeDisplay}}</td>
-                                    <td><i class="fa-regular fa-user"></i> All Users</td>
-                                    <td><a href="{{route('inspections.create', encrypt($data->id))}}"><button type="button" class="start_inspectionbtn">Start inspection</button></a></td>
-                                    <td >
-                                       <div class="dropdown notification-list topbar-dropdown" id="table_dropdownm">
-                                          <a class="user_profile nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                       <span>Office of Industrial Relations</span>
+                                    </div>
+                                 </td>
+                                 <td>{{$data->timeDisplay}}</td>
+                                 <td><i class="fa-regular fa-user"></i> All Users</td>
+                                 <td><a href="{{route('inspections.create', encrypt($data->id))}}"><button type="button" class="start_inspectionbtn">Start inspection</button></a></td>
+                                 <td>
+                                    <div class="dropdown notification-list topbar-dropdown" id="table_dropdownm">
+                                       <a class="user_profile nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                           <i class="fa-solid fa-ellipsis-vertical"></i>
-                                          </a>
-                                          <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
-                                          <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                                             <a href="{{route('template.edit', encrypt($data->id))}}" class="dropdown-item notify-item">
+                                       </a>
+                                       <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
+                                       <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                                          <a href="{{route('template.edit', encrypt($data->id))}}" class="dropdown-item notify-item">
                                              <i class="fa-solid fa-pencil"></i><span>Edit template</span>
-                                             </a>
-                                             <a href="{{route('schedule.create')}}" class="dropdown-item notify-item">
+                                          </a>
+                                          <a href="{{route('schedule.create')}}" class="dropdown-item notify-item">
                                              <i class="fa-regular fa-calendar-minus"></i><span>Schedule</span>
-                                             </a>
-                                             <a href="##" class="dropdown-item notify-item">
+                                          </a>
+                                          <a href="##" class="dropdown-item notify-item">
                                              <i class="fa-regular fa-eye"></i><span>Manage access</span>
-                                             </a>
-                                             <a href="inspections.php" class="dropdown-item notify-item">
+                                          </a>
+                                          <a href="inspections.php" class="dropdown-item notify-item">
                                              <i class="fa-regular fa-clipboard"></i><span>View inspections</span>
-                                             </a>
-                                          </div>
+                                          </a>
                                        </div>
-                                    </td>
-                                 </tr>
+                                    </div>
+                                 </td>
+                              </tr>
                               @endforeach
                            </tbody>
                         </table>
@@ -148,28 +152,27 @@
 <!-- data table searchbar style js -->
 <script>
    $(document).ready(function() {
-   
-   // Iterate through each DataTable
-   $('.datatable-container').each(function() {
-     const $searchLabel = $(this).find('.dataTables_filter label');
-     const $searchInput = $(this).find('.dataTables_filter input');
-   
-     // Add the search icon (Font Awesome in this example)
-     $searchLabel.prepend('<i class="fas fa-search"></i>');
-   
-      // Update the search filter for each DataTable
-   $('.datatable-container').each(function() {
-     const $searchInput = $(this).find('.dataTables_filter input');
-   
-     // Add a placeholder text to the input field
-     $searchInput.attr('placeholder', 'Search Templates..');
-   
-   
+
+      // Iterate through each DataTable
+      $('.datatable-container').each(function() {
+         const $searchLabel = $(this).find('.dataTables_filter label');
+         const $searchInput = $(this).find('.dataTables_filter input');
+
+         // Add the search icon (Font Awesome in this example)
+         $searchLabel.prepend('<i class="fas fa-search"></i>');
+
+         // Update the search filter for each DataTable
+         $('.datatable-container').each(function() {
+            const $searchInput = $(this).find('.dataTables_filter input');
+
+            // Add a placeholder text to the input field
+            $searchInput.attr('placeholder', 'Search Templates..');
+
+
+         });
+
+      });
    });
-     
-   });
-   });
-   
 </script>
 <!-- data table searchbar style js end -->
 <!-- create template off canvas start -->
@@ -334,8 +337,8 @@
 <!-- canvas search select dropdown working code -->
 <script>
    $('.custom_Rselect').select2({
-   dropdownParent: $('.cuatomoffcanvas')
-   });  
+      dropdownParent: $('.cuatomoffcanvas')
+   });
 </script>
 <!-- canvas search select dropdown end -->
 <!-- describe template topic modal -->

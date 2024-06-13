@@ -13,4 +13,9 @@ class Inspection extends Model
         'template_id','score','conducted','completed','status'
     ];
 
+    public function templateInspection()
+    {
+        return $this->hasOne(TemplateInspection::class, 'id', 'template_id');
+    }
+
 }

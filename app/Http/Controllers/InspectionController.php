@@ -14,7 +14,9 @@ class InspectionController extends Controller
 {
     public function index()
     {
-        return view('inspection.inspections');
+        $inspection_template = Inspection::with('templateInspection')->get();
+
+        return view('inspection.inspections', compact('inspection_template'));
     }
 
     public function create(Request $request)
@@ -30,13 +32,15 @@ class InspectionController extends Controller
         $fields = TemplateField::where('template_id', decrypt($request->id))->get();
         $fieldsArray = $fields->map(function ($field) use ($template_inspection) {
             $field->template_id = $template_inspection->id;
+            unset($field['id']);
             return $field->toArray();
         })->toArray();
-
         TemplateInspectionField::insert($fieldsArray);
 
-        // Return the view with the necessary data
-        return view('inspection.start-inspection', compact('fields', 'apiKey'));
+        $fields = TemplateInspectionField::where('template_id', $template_inspection->id)->get();
+        $inspection = Inspection::create(['template_id' => $template_inspection->id]);
+        
+        return view('inspection.start-inspection', compact('fields', 'apiKey', 'inspection'));
     }
 
     public function store(Request $request)
@@ -51,10 +55,9 @@ class InspectionController extends Controller
             $percentage = ($totalFields > 0) ? ($nonNullCount / $totalFields) * 100 : 0;
             $percentage = round($percentage);
 
-            $inspection = Inspection::create([
-                    'template_id'  => 1,
+            $inspection = Inspection::where('id', $request->inspection_id)->update([
+                    'template_id'  => $request->template_id,
                     'score'        => $percentage,
-                    'conducted'    => date('Y-m-d H:i:s'),
                     'completed'    => null,
                 ]);
 
@@ -83,7 +86,7 @@ class InspectionController extends Controller
                     // Create the InspectionField record
                     if (!in_array($fieldKey, ['media', 'note', 'action'])) {
                         $inspection_field = InspectionField::create([
-                            'inspection_id' => $inspection->id,
+                            'inspection_id' => $request->inspection_id,
                             'filed_name'    => $fieldKey,
                             'filed_data'    => is_array($fieldValue) ? json_encode($fieldValue) : $fieldValue,
                         ]);
@@ -95,7 +98,7 @@ class InspectionController extends Controller
     
                 // Prepare the action records
                 $action_records = [
-                    'inspection_id'       => $inspection->id,
+                    'inspection_id'       => $request->inspection_id,
                     'inspection_field_id' => $inspection_field_id,
                     'note'                => $fields['note'] ?? null,
                     'media'               => $fields['attachment'],
@@ -107,7 +110,7 @@ class InspectionController extends Controller
 
             $inspection_action = InspectionAction::insert($all_action_records);
             if($inspection && $inspection_field && $inspection_action){
-                return redirect()->back()->with('success','Inspection completed successfuly.');
+                return redirect()->route('inspections.index')->with('success','Inspection completed successfuly.');
             }
         }catch(\Exception $e){
             $data = [
@@ -122,6 +125,7 @@ class InspectionController extends Controller
 
     public function edit()
     {
+        dd('1111111111111');
         return view('inspection.start-inspection');
     }
     public function viewReport()
