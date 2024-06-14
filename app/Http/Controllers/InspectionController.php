@@ -123,9 +123,11 @@ class InspectionController extends Controller
              
     }
 
-    public function edit()
+    public function edit(Request $request)
     {
-        dd('1111111111111');
+        // dd('1111111111111');
+        $fields = TemplateInspectionField::where('template_id', decrypt($request->id))->get();
+        dd($fields);
         return view('inspection.start-inspection');
     }
     public function viewReport()

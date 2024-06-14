@@ -295,7 +295,7 @@
                                                     </a>
                                                     <!-- <p class="user_mail_id">avi@techmavesoftware.com</p> -->
                                                     <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
-                                                        <a href="{{route('inspections.edit')}}" class="dropdown-item notify-item">
+                                                        <a href="{{ route('inspections.edit', encrypt($data->template_id)) }}" class="dropdown-item notify-item">
                                                             <i class="fa-solid fa-pencil"></i><span>Edit Inspection</span>
                                                         </a>
 

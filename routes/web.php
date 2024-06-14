@@ -256,7 +256,7 @@ Route::group(['prefix'=>'inspections','as'=>'inspections.','middleware'=>'auth']
     Route::get('/view-reportd', [InspectionController::class,'viewReport'])->name('viewReport');
     Route::get('/view-history', [InspectionController::class,'viewHistory'])->name('viewHistory');
     Route::post('/store', [InspectionController::class,'store'])->name('store');
-    Route::get('/edit/{id?}', [InspectionController::class,'edit'])->name('edit');
+    Route::get('/edit/{id}', [InspectionController::class,'edit'])->name('edit');
     // Route::post('/update/{id}', [TemplatesController::class,'update'])->name('update');
     // Route::post('/shift-question-unique-check', [TemplatesController::class,'unique_check'])->name('unique-check');
 });
